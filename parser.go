@@ -1,23 +1,22 @@
 package jsonr
 
-// TypeNum represents json property type
-type TypeNum int
+// ParentTypeNum represents json property type
+type ParentTypeNum int
 
-// TypeNum
+// ParentTypeNum
 const (
-	TypeObject TypeNum = iota
-	TypeArray
-	TypePrimitive
+	ParentTypeObject ParentTypeNum = iota
+	ParentTypeArray
 )
 
 // Token records json token info
 type Token struct {
-	Parent int     // the index number of parent in slice and -1 means root Token.
-	Key    string  // name of its property
-	Start  int     // start position
-	End    int     // end position
-	Type   TypeNum // property type
-	Index  int     // for representing the index of Array
+	Key        string        // name of its property
+	Start      int           // start position
+	End        int           // end position
+	Parent     int           // the index number of parent in slice and -1 means root Token.
+	ParentType ParentTypeNum // parent type (Array or Object)
+	Index      int           // for representing the index of Array
 }
 
 // ParseJSON parses json to Token slice
